@@ -13,6 +13,12 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [vue()],
+    css: {
+      minify: "false", // 明确压缩器，也可临时关闭验证：minify: false
+      cssnanoOptions: {
+        preset: ["default", { discardComments: { removeAll: false } }], // 保留关键注释，避免样式失效
+      },
+    },
 
     // 开发环境配置
     server: {
@@ -71,6 +77,13 @@ export default defineConfig(({ mode }) => {
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+        },
+      },
+      minify: "terser",
+      terserOptions: {
+        compress: {
+          // 禁止删除未使用的函数/变量（避免适配函数被删）
+          unused: false,
         },
       },
     },
