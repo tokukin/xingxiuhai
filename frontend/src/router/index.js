@@ -67,21 +67,6 @@ const routes = [
   },
 
   {
-    path: "/chemistry/element-detail/:elementId",
-    name: "ChemicalElementDetail",
-    component: () => import("../views/ChemicalElementDetail.vue"),
-    meta: {
-      title: "元素详情",
-      breadcrumb: "元素详情",
-      parentBreadcrumb: [
-        { path: "/", name: "首页" }, // 第一层父级
-        { path: "/chemistry", name: "化学" },
-      ],
-      hideHeader: true,
-    },
-  },
-
-  {
     // 404 路由（放在最后）
     path: "/:pathMatch(.*)*", // 匹配所有未定义的路由
     name: "NotFound",
