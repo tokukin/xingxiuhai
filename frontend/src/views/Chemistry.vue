@@ -77,10 +77,8 @@ const gridSize = ref(8);
 .box {
   height: 30vh;
   background-color: aliceblue;
-
   font-weight: bold;
   display: flex;
-
   flex-direction: column;
   justify-content: center; /* 垂直方向居中（主轴居中） */
   align-items: center; /* 水平方向居中（交叉轴居中） */
@@ -89,9 +87,9 @@ const gridSize = ref(8);
 
 .box p {
   text-align: left;
-  font-size: 20px;
+  font-size: 15px;
 }
 .text-info {
-  font-size: 20px;
+  font-size: 15px;
 }
 </style>

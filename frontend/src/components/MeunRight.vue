@@ -23,7 +23,7 @@ const handleSelect = (index) => {
     @select="handleSelect"
   >
     <el-menu-item index="/">
-      <img style="width: 50px" src="../assets/logo.svg" alt="Element logo" ><div style="font-size: 35px;font-weight: bold;">星宿海</div></img>
+      <img style="width: 25px" src="../assets/logo.svg" alt="Element logo" ><div style="font-size: 15px;font-weight: bold;">星宿海</div></img>
     </el-menu-item>
     <!-- <el-menu-item index="/">首页</el-menu-item> -->
     <el-menu-item index="/math">数学</el-menu-item>
@@ -33,19 +33,18 @@ const handleSelect = (index) => {
 </template>
 <style>
 .el-menu .el-menu-item {
-  font-size: 20px; /* 覆盖菜单项字体 */
+  font-size: 15px; /* 覆盖菜单项字体 */
 }
 .el-menu .el-sub-menu__title {
-  font-size: 20px; /* 更简洁的选择器，确保应用到所有子菜单标题 */
+  font-size: 15px; /* 更简洁的选择器，确保应用到所有子菜单标题 */
 }
 .el-header {
-  width: 100%;
-  height: 60px;
-
+  width: 90%;
+  height: 40px;
   padding: 0;
 }
 .el-menu--horizontal {
-  --el-menu-horizontal-height: 70px;
+  --el-menu-horizontal-height: 50px;
 }
 .el-menu--horizontal > .el-menu-item:nth-child(1) {
   margin-right: auto;

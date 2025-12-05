@@ -207,7 +207,7 @@ const get_question = (level) => {
 </script>
 
 <template>
-  <h1>数学口算</h1>
+  <h2>数学口算</h2>
   <el-row :gutter="gutterSize" class="select_point_row">
     <!-- 年级选择器 -->
     <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
@@ -328,29 +328,29 @@ const get_question = (level) => {
 <style>
 .calc_box_expression {
   background-color: blueviolet;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   height: 60px;
 }
 
 .ans_info {
-  font-size: 25px;
+  font-size: 15px;
   font-weight: 600;
   height: 60px;
 }
 .calc_box {
   /* background-color: rgb(251, 243, 193); */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 800px;
+  height: 500px;
   gap: 20px;
 }
 
 .calc_box_text {
   background-color: rgb(30, 206, 88);
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   text-align: center;
   height: 400px;
@@ -363,7 +363,7 @@ const get_question = (level) => {
 
 .calc_box_info {
   /* background-color: rgb(255, 166, 0); */
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   text-align: center;
   height: 100px;
@@ -378,19 +378,19 @@ const get_question = (level) => {
 }
 
 .select_point_text {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   text-align: center;
 }
 
 .el-input--large {
-  font-size: 25px;
+  font-size: 20px;
 }
 .el-input__wrapper {
-  height: 50px;
+  height: 35px;
 }
 .el-select__wrapper {
-  height: 50px;
+  height: 30px;
 }
 
 .el-option__label {
@@ -399,9 +399,9 @@ const get_question = (level) => {
 }
 .el-input__inner {
   color: brown;
-  font-size: 25px;
-  height: 40px;
-  line-height: 40px;
+  font-size: 20px;
+  height: 20px;
+  line-height: 20px;
   font-weight: bold;
 }
 
@@ -411,7 +411,7 @@ const get_question = (level) => {
 .el-cascader-node__label,
 .el-select-dropdown__item {
   /* color: chartreuse; */
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .el-cascader-menu__wrap.el-scrollbar__wrap {
@@ -420,8 +420,8 @@ const get_question = (level) => {
 
 .el-select__selected-item {
   color: brown;
-  font-size: 25px;
-  height: 40px;
+  font-size: 20px;
+  height: 35px;
   line-height: 40px;
   font-weight: bold;
 }
