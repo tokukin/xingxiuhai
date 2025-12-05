@@ -1,0 +1,137 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 主色调（品牌色） */
+  --primary-color: #3966a2; /* 蓝色主色 */
+  --primary-light: #6191d3; /* 主色浅色 */
+  --primary-dark: #132843; /* 主色深色 */
+
+  /* 辅助色（功能色） */
+  --success-color: #4caf50; /* 成功绿 */
+  --warning-color: #ff9800; /* 警告橙 */
+  --error-color: #f44336; /* 错误红 */
+
+  /* 中性色（文本、背景等） */
+  --text-primary: #333333; /* 主要文本 */
+  --text-secondary: #666666; /* 次要文本 */
+  --bg-primary: #ffffff; /* 主要背景 */
+  --border-color: #e0e0e0; /* 边框色 */
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: top;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.nonmetal {
+  background-image: linear-gradient(to bottom left, #4caf50, #4ce951);
+}
+.noblegas {
+  background-image: linear-gradient(to bottom left, #2196f3, #55aef7);
+}
+.alkalimetal {
+  background-image: linear-gradient(to bottom left, #ff9800, #f3b04a);
+}
+.alkalineearth {
+  background-image: linear-gradient(to bottom left, #ffc107, #d6b744);
+}
+.metalloid {
+  background-image: linear-gradient(to bottom left, #795548, #ec8c5f);
+}
+.metal {
+  background-image: linear-gradient(to bottom left, #9c27b0, #c275e6);
+}
+.transitionmetal {
+  background-image: linear-gradient(to bottom left, #3f51b5, #6778e9);
+}
+.lanthanide {
+  background-image: linear-gradient(to bottom left, #26a69a, #5cc4b9);
+}
+.halogen {
+  background-image: linear-gradient(to bottom left, #8bc34a, #aedc7a);
+}
+.actinide {
+  background-image: linear-gradient(to bottom left, #e91e63, #f582a7);
+}
+
+.lanthanide-sample {
+  background-image: linear-gradient(to bottom left, #26a69a, #5cc4b9);
+}
+.actinide-sample {
+  background-image: linear-gradient(to bottom left, #e91e63, #f582a7);
+}
