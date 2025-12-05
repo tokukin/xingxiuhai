@@ -15,10 +15,10 @@ load_dotenv()
 host = os.getenv("HOST", "127.0.0.1")
 port = int(os.getenv("PORT", 8000))
 cors_origins = os.getenv("CORS_ORIGINS", "").split(",") if os.getenv("CORS_ORIGINS") else []
+title = os.getenv("TITLE", "Science API")
+version = os.getenv("VERSION", "1.0.0")
 
-
-
-app = FastAPI(title="xingxiuhai", version="1.0.0")
+app = FastAPI(title=title, version=version)
 
 # 定义版本路由（添加前缀）
 v1_router = APIRouter(prefix="/api/v1")
@@ -31,12 +31,7 @@ app.include_router(v1_router)
 
 
 
-# 配置允许跨域的源（ origins）
-origins = [
-    #"http://localhost:5173",  # 你的前端地址（必须精确匹配）
-    # 若需要允许所有源（开发环境临时用，生产环境不推荐）：
-    "*"
-]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,  # 允许的源
