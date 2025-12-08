@@ -29,7 +29,7 @@ class MathProblemGenerator:
             a = random.randint(1, 5)
             b = random.randint(0, 5-a)
             operation = random.choice(["+"])
-            expression = f"{a} + {b}"
+            expression = f"{a} + {b} = "
             answer = a + b
             
         
@@ -38,7 +38,7 @@ class MathProblemGenerator:
             a = random.randint(1, 5)
             b = random.randint(0, a)
             operation = random.choice(["-"])
-            expression = f"{a} - {b}"
+            expression = f"{a} - {b} = "
             answer = a - b
             
         
@@ -47,7 +47,7 @@ class MathProblemGenerator:
             a = random.randint(0, 10)
             b = random.randint(6-a, 10-a)
             operation = random.choice(["+"])
-            expression = f"{a} + {b}"
+            expression = f"{a} + {b} = "
             answer = a + b
                 
             
@@ -56,7 +56,7 @@ class MathProblemGenerator:
             a = random.randint(6, 10)
             b = random.randint(0, a)
             operation = random.choice(["-"])
-            expression = f"{a} - {b}"
+            expression = f"{a} - {b} = "
             answer = a - b
             
         elif level == 5:
@@ -64,7 +64,7 @@ class MathProblemGenerator:
             a = random.randint(1, 9)
             b = random.randint(10-a, 9)
             operation = random.choice(["+"])
-            expression = f"{a} + {b}"
+            expression = f"{a} + {b} = "
             answer = a + b
             
         elif level == 6:
@@ -73,28 +73,28 @@ class MathProblemGenerator:
             if operation == "+":
                 a = random.randint(1, 19)
                 b = random.randint(1, 20-a)
-                expression = f"{a} + {b}"
+                expression = f"{a} + {b} = "
                 answer = a + b
             else:
                 # 确保减法结果不为负数
                 a = random.randint(1, 10)
                 b = random.randint(1, 10)
                 a, b = max(a, b), min(a, b)
-                expression = f"{a} - {b}"
+                expression = f"{a} - {b} = "
                 answer = a - b
         elif level == 7:
             # 20以内的退位减法
             a = random.randint(10, 19)
             b = random.randint(a-9, a)
             a, b = max(a, b), min(a, b)
-            expression = f"{a} - {b}"
+            expression = f"{a} - {b} = "
             answer = a - b
         elif level == 8:
             # 100以内的口算加法
             a = random.randint(1, 99)
             b = random.randint(1, 100-a)
             operation = random.choice(["+"])
-            expression = f"{a} + {b}"
+            expression = f"{a} + {b} = "
             answer = a + b
             
         elif level == 9:
@@ -103,7 +103,7 @@ class MathProblemGenerator:
             b = random.randint(1, 100)
             operation = random.choice(["-"])
             a, b = max(a, b), min(a, b)
-            expression = f"{a} - {b}"
+            expression = f"{a} - {b} = "
             answer = a - b
         elif level == 10:
             # 一年级下册总复习
@@ -111,21 +111,21 @@ class MathProblemGenerator:
             if operation == "+":
                 a = random.randint(1, 99)
                 b = random.randint(1, 100-a)
-                expression = f"{a} + {b}"
+                expression = f"{a} + {b} = "
                 answer = a + b
             else:
                 # 确保减法结果不为负数
                 a = random.randint(1, 100)
                 b = random.randint(1, 100)
                 a, b = max(a, b), min(a, b)
-                expression = f"{a} - {b}"
+                expression = f"{a} - {b} = "
                 answer = a - b
         elif level == 11:
             # 1-6表内乘法
             a = random.randint(1, 6)
             b = random.randint(1, 6)
             operation = random.choice(["×"])
-            expression = f"{a} × {b}"
+            expression = f"{a} × {b} = "
             answer = a * b
         elif level == 12:
             # 1-6表内除法
@@ -138,7 +138,7 @@ class MathProblemGenerator:
             b = random.choice(b_pos)
         
             operation = random.choice(["÷"])
-            expression = f"{a} ÷ {b}"
+            expression = f"{a} ÷ {b} = "
             answer = a / b
             
         elif level == 13:
@@ -146,7 +146,7 @@ class MathProblemGenerator:
             a = random.randint(7, 9)
             b = random.randint(7, 9)
             operation = random.choice(["*"])
-            expression = f"{a} * {b}"
+            expression = f"{a} × {b} = "
             answer = a * b
         elif level == 14:
             # 7-9表内除法
@@ -159,7 +159,7 @@ class MathProblemGenerator:
             b = random.choice(b_pos)
         
             operation = random.choice(["÷"])
-            expression = f"{a} ÷ {b}"
+            expression = f"{a} ÷ {b} = "
             answer = a / b
             
         

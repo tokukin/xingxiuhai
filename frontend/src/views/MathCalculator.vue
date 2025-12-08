@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from "vue";
+import { ElMessage } from "element-plus";
 
 const gutterSize = ref(10);
 const value = ref([]); // 年级选择器绑定值
-const levelValue = ref([]); // 知识点选择器绑定值
+const levelValue = ref(""); // 知识点选择器绑定值
 // 关键修复：重新定义 isLoading 响应式变量
 const isLoading = ref(false);
 
@@ -14,8 +15,10 @@ const total_answered = ref(0);
 const correct_answers = ref(0);
 const current_problem_id = ref(1);
 
-const expression = ref("1+1");
+const expression = ref("等待出题");
 const answer = ref(0);
+const userInput = ref("");
+const wrong_answers = ref([]);
 
 // 年级选择变化处理
 const handleChange = (val) => {
@@ -58,99 +61,43 @@ const options = [
         label: "二年级",
         children: [
           { value: "3", label: "上册" },
-          { value: "4", label: "下册" },
+          { value: "4", label: "下册", disabled: true },
         ],
       },
       {
         value: "grade3",
         label: "三年级",
+        disabled: true,
         children: [
-          { value: "5", label: "上册" },
-          { value: "6", label: "下册" },
+          { value: "5", label: "上册", disabled: true },
+          { value: "6", label: "下册", disabled: true },
         ],
       },
       {
         value: "grade4",
         label: "四年级",
+        disabled: true,
         children: [
-          { value: "7", label: "上册" },
-          { value: "8", label: "下册" },
+          { value: "7", label: "上册", disabled: true },
+          { value: "8", label: "下册", disabled: true },
         ],
       },
       {
         value: "grade5",
         label: "五年级",
+        disabled: true,
         children: [
-          { value: "9", label: "上册" },
-          { value: "10", label: "下册" },
+          { value: "9", label: "上册", disabled: true },
+          { value: "10", label: "下册", disabled: true },
         ],
       },
       {
         value: "grade6",
         label: "六年级",
+        disabled: true,
         children: [
-          { value: "11", label: "上册" },
-          { value: "12", label: "下册" },
-        ],
-      },
-    ],
-  },
-  {
-    value: "middle",
-    label: "初中",
-    children: [
-      {
-        value: "grade7",
-        label: "初一",
-        children: [
-          { value: "13", label: "上册" },
-          { value: "14", label: "下册" },
-        ],
-      },
-      {
-        value: "grade8",
-        label: "初二",
-        children: [
-          { value: "15", label: "上册" },
-          { value: "16", label: "下册" },
-        ],
-      },
-      {
-        value: "grade9",
-        label: "初三",
-        children: [
-          { value: "17", label: "上册" },
-          { value: "18", label: "下册" },
-        ],
-      },
-    ],
-  },
-  {
-    value: "high",
-    label: "高中",
-    children: [
-      {
-        value: "grade10",
-        label: "高一",
-        children: [
-          { value: "19", label: "上册" },
-          { value: "20", label: "下册" },
-        ],
-      },
-      {
-        value: "grade11",
-        label: "高二",
-        children: [
-          { value: "21", label: "上册" },
-          { value: "22", label: "下册" },
-        ],
-      },
-      {
-        value: "grade12",
-        label: "高三",
-        children: [
-          { value: "23", label: "上册" },
-          { value: "24", label: "下册" },
+          { value: "11", label: "上册", disabled: true },
+          { value: "12", label: "下册", disabled: true },
         ],
       },
     ],
@@ -174,7 +121,7 @@ const load_level = async (grade_id) => {
       data.data.length > 0
     ) {
       const newLevels = data.data.map((level, index) => ({
-        value: `${grade_id}`,
+        value: `${level.id}`,
         label: level.calculate_level || "未命名口算等级",
       }));
       options_level.value = options_level.value.concat(newLevels);
@@ -204,10 +151,33 @@ const get_question = (level) => {
       console.error("Error:", error);
     });
 };
+
+// 检查答案
+const checkAnswer = () => {
+  total_answered.value++;
+  // console.log(userInput.value);
+  // console.log(answer.value);
+  if (parseInt(userInput.value) == answer.value) {
+    ElMessage({
+      message: "回答正确太棒了！！！",
+      type: "success",
+    });
+    correct_answers.value++;
+    userInput.value = "";
+    get_question(levelValue.value);
+  } else {
+    ElMessage({
+      message: "回答错误，请重新输入",
+      type: "error",
+    });
+
+    wrong_answers.value.push(expression.value + userInput.value);
+    userInput.value = "";
+  }
+};
 </script>
 
 <template>
-  <h2>数学口算</h2>
   <el-row :gutter="gutterSize" class="select_point_row">
     <!-- 年级选择器 -->
     <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
@@ -312,25 +282,73 @@ const get_question = (level) => {
       </div>
     </div>
     <div class="calc_box_text">
-      <div class="calc_box_expression">{{ expression }}</div>
-      <div class="calc_box_answer">
-        <el-button>Default</el-button>
-        <el-button type="primary">Primary</el-button>
-        <el-button type="success">Success</el-button>
-        <el-button type="info">Info</el-button>
-        <el-button type="warning">Warning</el-button>
-        <el-button type="danger">Danger</el-button>
+      <div class="calc_box_expression">
+        {{ expression }}
+        <!-- 增加自定义类名custom-input -->
+        <input
+          v-if="expression !== '等待出题'"
+          type="text"
+          v-model="userInput"
+          placeholder="请输入答案"
+          class="custom-input"
+          @keyup.enter="checkAnswer"
+        />
+        <el-button
+          v-if="expression !== '等待出题'"
+          type="primary"
+          style="height: 100px; width: 150px; margin-left: 20px"
+          @click="checkAnswer"
+          >确认</el-button
+        >
       </div>
+      <div class="calc_box_wrong">错题记录：{{ wrong_answers.join("，") }}</div>
     </div>
   </el-row>
 </template>
 
 <style>
-.calc_box_expression {
-  background-color: blueviolet;
+.calc_box_wrong {
+  margin-top: 20px;
+  height: 200px;
+  width: 1000px;
+  background-color: lightcyan;
   font-size: 20px;
   font-weight: 600;
-  height: 60px;
+  color: red;
+  text-align: left;
+}
+.calc_box_answer {
+  margin-top: 20px;
+}
+/* 占位符样式（可选） */
+.custom-input::placeholder {
+  color: grey; /* 半透明白色，更柔和 */
+  font-size: 32px; /* 占位符字体稍小 */
+}
+.custom-input {
+  font-size: 150px; /* 和表达式字体大小一致 */
+  font-weight: 600;
+  color: grey; /* 字体颜色和背景对比 */
+  background: transparent; /* 透明背景，融入父容器 */
+  border: none; /* 去掉默认边框 */
+  border-bottom: 2px solid grey; /* 仅保留下划线 */
+  outline: none; /* 去掉聚焦时的默认外框 */
+  width: 200px; /* 限制输入框宽度 */
+  padding: 5px 0; /* 上下内边距，优化点击区域 */
+  text-align: center; /* 输入内容居中 */
+}
+.calc_box_expression {
+  background-color: azure;
+  font-size: 150px;
+  font-weight: 600;
+  height: 200px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+  width: 1300px;
 }
 
 .ans_info {
@@ -341,15 +359,15 @@ const get_question = (level) => {
 .calc_box {
   /* background-color: rgb(251, 243, 193); */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 500px;
-  gap: 20px;
+  height: 700px;
+  gap: 10px;
 }
 
 .calc_box_text {
-  background-color: rgb(30, 206, 88);
+  background-color: rgb(255, 255, 255);
   font-size: 20px;
   font-weight: 600;
   text-align: center;
@@ -366,7 +384,7 @@ const get_question = (level) => {
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  height: 100px;
+  height: 80px;
   width: 1000px;
   display: flex;
   flex-direction: row;

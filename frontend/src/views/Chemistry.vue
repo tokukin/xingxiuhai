@@ -48,6 +48,7 @@ const gridSize = ref(8);
       :xl="gridSize"
     >
       <div class="box">
+        元素周期表（点击下图跳转）
         <!-- 纯图片点击跳转（去掉el-button，响应不变） -->
         <a
           @click="handleSelect('/chemistry/periodic-table')"

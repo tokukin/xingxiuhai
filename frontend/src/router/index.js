@@ -10,13 +10,28 @@ const routes = [
   {
     path: "/math",
     name: "Math",
-    component: () => import("../views/Math.vue"),
+    component: () => import("../views/MathHome.vue"),
     meta: {
       title: "数学",
       breadcrumb: "数学",
       parentBreadcrumb: { path: "/", name: "首页" },
     },
   },
+  // /math/calculator
+  {
+    path: "/math/calculator",
+    name: "Calculator",
+    component: () => import("../views/MathCalculator.vue"),
+    meta: {
+      title: "计算器",
+      breadcrumb: "计算器",
+      parentBreadcrumb: [
+        { path: "/", name: "首页" }, // 第一层父级
+        { path: "/math", name: "数学" },
+      ],
+    },
+  },
+  // /physics
   {
     path: "/physics",
     name: "Physics",

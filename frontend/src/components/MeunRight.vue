@@ -27,7 +27,7 @@ const handleSelect = (index) => {
     </el-menu-item>
     <!-- <el-menu-item index="/">首页</el-menu-item> -->
     <el-menu-item index="/math">数学</el-menu-item>
-    <el-menu-item index="/physics">物理</el-menu-item>
+    <el-menu-item index="/physics" disabled>物理</el-menu-item>
     <el-menu-item index="/chemistry">化学</el-menu-item>
   </el-menu>
 </template>
