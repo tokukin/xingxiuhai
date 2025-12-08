@@ -23,7 +23,7 @@ const gridSize = ref(8);
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box">
+      <div class="box_math">
         <p>
           <el-tag type="primary" class="text-info">定义</el-tag>
           <el-text class="text-info"
@@ -39,7 +39,7 @@ const gridSize = ref(8);
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box">
+      <div class="box_math">
         数学工具
         <!-- 纯图片点击跳转（去掉el-button，响应不变） -->
         <el-button type="primary" @click="handleSelect('/math/calculator')"
@@ -54,13 +54,13 @@ const gridSize = ref(8);
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box"></div>
+      <div class="box_math"></div>
     </el-col>
   </el-row>
 </template>
 
 <style>
-.box {
+.box_math {
   height: 30vh;
   background-color: aliceblue;
   font-weight: bold;
@@ -71,7 +71,7 @@ const gridSize = ref(8);
   padding: 10px;
 }
 
-.box p {
+.box_math p {
   text-align: left;
   font-size: 15px;
 }

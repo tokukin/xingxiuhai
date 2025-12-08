@@ -93,7 +93,7 @@ onUnmounted(() => {
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box"></div>
+      <div class="box_home"></div>
     </el-col>
     <el-col
       :xs="gridSize"
@@ -102,7 +102,7 @@ onUnmounted(() => {
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box">
+      <div class="box_home">
         <div>
           <span>欢迎使用学习系统. </span>
           <el-divider content-position="left">加油！！加油！！</el-divider>
@@ -121,7 +121,7 @@ onUnmounted(() => {
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box">
+      <div class="box_home">
         <div>
           <h2>登录</h2>
           <div v-if="userInfo">
@@ -140,7 +140,7 @@ onUnmounted(() => {
 </template>
 
 <style>
-.box {
+.box_home {
   height: 70vh;
   background-color: aliceblue;
   font-weight: bold;
@@ -151,7 +151,7 @@ onUnmounted(() => {
   padding: 10px;
 }
 
-.box p {
+.box_home p {
   text-align: left;
   font-size: 15px;
 }

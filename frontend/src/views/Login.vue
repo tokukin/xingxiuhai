@@ -21,6 +21,7 @@ import { ref } from "vue";
 import request from "../utils/request";
 import { useRouter, useRoute } from "vue-router";
 import bus from "../utils/bus"; // 导入事件总线
+import { ElMessage } from "element-plus";
 
 const router = useRouter();
 const route = useRoute();
@@ -39,9 +40,17 @@ const handleLogin = async () => {
     localStorage.setItem("access_token", res.data.access_token);
     // 登录成功后，触发刷新登录态事件
     bus.emit("refresh-menu");
+    ElMessage({
+      message: "登录成功",
+      type: "success",
+    });
     const redirect = route.query.redirect || "/";
     router.push(redirect); // 登录成功跳转到首页
   } catch (err) {
+    ElMessage({
+      message: "登录失败",
+      type: "error",
+    });
     errorMsg.value = err.response?.data?.detail || "登录失败，请检查账号密码";
   }
 };
