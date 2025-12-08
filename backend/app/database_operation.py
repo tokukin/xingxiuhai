@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 import os
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
 
 load_dotenv()
@@ -95,12 +96,47 @@ class databaseOperation:
             finally:
                 self.close(connection, cursor)
 
+    def get_one_user(self, username: str = ""):
+        connection, cursor = self.connect()
+        if connection and cursor:
+            try:
+                query = "SELECT su.username ,su.full_name ,su.email  ,su.hashed_password ,su.disabled from dev_science.science_user su WHERE su.username = '%s'"
+                full_sql = query % (username,)  # 字符串类型直接拼接，无需引号
+                print(f"执行的完整SQL：{full_sql}")  # 打印最终执行的SQL
+                
+                cursor.execute(full_sql)
+                results = cursor.fetchone()
+                print(f'查询到1条用户信息')
+
+                
+                if results:
+                    user = {
+                        "username": results[0],
+                        "full_name": results[1],
+                        "email": results[2],
+                        "hashed_password": results[3],
+                        "disabled": results[4],
+                    }
+                    
+                    
+                    return user
+                else:
+                    return None
+                return results
+            except Error as e:
+                print(f"查询用户信息失败: {e}")
+                return None
+            finally:
+                self.close(connection, cursor)
+
+
+
+
+
 if __name__ == "__main__":
     db_op = databaseOperation()
-    elements = db_op.get_all_element_base_info()
-    if elements:
-        for element in elements:
-            print(element)
+    elements = db_op.get_one_user(username="lijiewei")
+    print(elements)
         
     
 
