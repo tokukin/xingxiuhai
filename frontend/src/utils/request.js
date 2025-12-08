@@ -1,9 +1,14 @@
 // src/utils/request.js
 import axios from "axios";
-import router from "@/router"; // 导入路由实例，替代 window.location.href
 
+import router from "@/router"; // 导入路由实例，替代 window.location.href
+import path from "path";
+
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL.replace("/api", "") ||
+  "http://localhost:8001";
 const request = axios.create({
-  baseURL: "http://localhost:8001",
+  baseURL,
   timeout: 5000,
   withCredentials: true,
 });
