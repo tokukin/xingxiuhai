@@ -9,6 +9,7 @@ DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
 DATABASE_PORT = int(os.getenv('DATABASE_PORT'))
 DATABASE_HOST = os.getenv('DATABASE_HOST')
 DATABASE_USER = os.getenv('DATABASE_USER')
+DATABASE_NAME = os.getenv('DATABASE_NAME')
 
 
 
@@ -19,7 +20,7 @@ class databaseOperation:
         "port": DATABASE_PORT,              # 端口
         "user": DATABASE_USER,            # 用户名
         "password": DATABASE_PASSWORD,      # 密码
-        # "database": "chemistry",  # 提前创建的数据库名
+        "database": DATABASE_NAME,  # 提前创建的数据库名
         "charset": "utf8mb4"       # 字符集（与表结构一致）
     }
 
@@ -45,7 +46,7 @@ class databaseOperation:
         connection, cursor = self.connect()
         if connection and cursor:
             try:
-                query = "SELECT el.`atomic`, el.symbol ,el.chinesename ,el.englishname ,el.weight ,el.series ,el.expandedconfig ,el.electronstring FROM chemistry.elements el"
+                query = "SELECT el.`atomic`, el.symbol ,el.chinesename ,el.englishname ,el.weight ,el.series ,el.expandedconfig ,el.electronstring FROM chemistry_elements el"
                 print(query)
                 
                 cursor.execute(query)
@@ -63,7 +64,7 @@ class databaseOperation:
         connection, cursor = self.connect()
         if connection and cursor:
             try:
-                query = "SELECT mkp.id,mkp.grade_id ,mkp.key_point  FROM math.math_knowledge_point mkp WHERE mkp.grade_id = %s ORDER BY mkp.id ASC"
+                query = "SELECT mkp.id,mkp.grade_id ,mkp.key_point  FROM math_knowledge_point mkp WHERE mkp.grade_id = %s ORDER BY mkp.id ASC"
                 full_sql = query % (grade_id,)  # int类型直接拼接，无需引号
                 print(f"执行的完整SQL：{full_sql}")  # 打印最终执行的SQL
                 
@@ -80,7 +81,7 @@ class databaseOperation:
         connection, cursor = self.connect()
         if connection and cursor:
             try:
-                query = "SELECT mcl.id,mcl.grade_id ,mcl.calculate_level  FROM math.math_calculate_level mcl WHERE mcl.grade_id = %s ORDER BY mcl.id ASC"
+                query = "SELECT mcl.id,mcl.grade_id ,mcl.calculate_level  FROM math_calculate_level mcl WHERE mcl.grade_id = %s ORDER BY mcl.id ASC"
                 full_sql = query % (grade_id,)  # int类型直接拼接，无需引号
                 print(f"执行的完整SQL：{full_sql}")  # 打印最终执行的SQL
                 
@@ -96,7 +97,7 @@ class databaseOperation:
 
 if __name__ == "__main__":
     db_op = databaseOperation()
-    elements = db_op.get_math_knowledge_points(3)
+    elements = db_op.get_all_element_base_info()
     if elements:
         for element in elements:
             print(element)

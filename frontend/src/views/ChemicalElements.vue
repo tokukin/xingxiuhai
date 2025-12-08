@@ -45,7 +45,7 @@ const loadAllElements = () => {
 
         elementDomo.classList.add(elem.type);
       }
-      if (windowSize.value.clientWidth > 1970) {
+      if (windowSize.value.clientWidth > 1200) {
         elementSamples.forEach((elementSample) => {
           elementSample.classList.add("element-type-sample-large");
         });
@@ -77,7 +77,7 @@ const loadAllElements = () => {
           elementDom.innerHTML += newDivHtml;
           elementDom.classList.add("nide-sample");
         });
-      } else if (windowSize.value.clientWidth > 1300) {
+      } else if (windowSize.value.clientWidth > 1100) {
         elementSamples.forEach((elementSample) => {
           elementSample.classList.add("element-type-sample-mid");
         });
@@ -166,6 +166,7 @@ const updateWindowSize = () => {
 
 // 批量设置所有 .ratio-item 的高度 = 宽度 × 1.2
 const setAllRatioItems = () => {
+  console.log(windowSize.value);
   updateWindowSize();
 
   const items = Array.from(document.querySelectorAll(".grid-element"));
@@ -304,7 +305,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <h1 style="text-align: center; font-size: 30px; margin: 5px">{{ title }}</h1>
+  <h1 style="text-align: center; font-size: 24px; margin: 5px">{{ title }}</h1>
 
   <el-row :gutter="gutterSize" class="period-row">
     <el-col :xs="18" :sm="18" :md="18" :lg="18" :xl="18" :offset="3">
@@ -962,7 +963,7 @@ onUnmounted(() => {
   display: inline-block;
   width: 100%;
   text-align: center;
-  font-size: clamp(12px, 3vw, 20px);
+  font-size: clamp(8px, 3vw, 10px);
 }
 :deep(.element-info-mid) {
   height: 50px;
@@ -972,7 +973,14 @@ onUnmounted(() => {
   align-items: center; /* 水平方向居中（交叉轴居中） */
 }
 :deep(.element-info-mid .element-chineseName) {
-  font-size: clamp(12px, 3vw, 23px);
+  font-size: clamp(10px, 3vw, 15px);
+}
+
+:deep(.element-info-up .element-symbol) {
+  font-size: clamp(5px, 3vw, 12px);
+}
+:deep(.element-info-up .element-number) {
+  font-size: clamp(5px, 3vw, 12px);
 }
 
 .period-row {
@@ -984,43 +992,43 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   color: aliceblue;
-  font-size: clamp(6px, 3vw, 16px);
+  font-size: clamp(5px, 3vw, 10px);
   justify-content: center;
   align-items: center;
   text-overflow: ellipsis;
-  height: 50px;
+  height: 40px;
 }
 :deep(.element-type-sample-large) {
-  font-size: clamp(6px, 3vw, 16px);
-  justify-content: center;
-  align-items: center;
-  text-overflow: ellipsis;
-}
-:deep(.element-type-sample-mid) {
   font-size: clamp(6px, 3vw, 10px);
   justify-content: center;
   align-items: center;
   text-overflow: ellipsis;
 }
-:deep(.element-type-sample-small) {
+:deep(.element-type-sample-mid) {
   font-size: clamp(6px, 3vw, 8px);
+  justify-content: center;
+  align-items: center;
+  text-overflow: ellipsis;
+}
+:deep(.element-type-sample-small) {
+  font-size: clamp(4px, 3vw, 6px);
   justify-content: center;
   align-items: center;
   text-overflow: ellipsis;
 }
 
 :deep(.nide-sample) {
-  font-size: clamp(6px, 3vw, 16px);
-  justify-content: center;
-  align-items: center;
-}
-:deep(.nide-sample-mid) {
   font-size: clamp(6px, 3vw, 10px);
   justify-content: center;
   align-items: center;
 }
-:deep(.nide-sample-small) {
+:deep(.nide-sample-mid) {
   font-size: clamp(6px, 3vw, 8px);
+  justify-content: center;
+  align-items: center;
+}
+:deep(.nide-sample-small) {
+  font-size: clamp(4px, 3vw, 6px);
   justify-content: center;
   align-items: center;
 }
