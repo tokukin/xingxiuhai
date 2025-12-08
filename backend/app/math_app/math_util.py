@@ -45,7 +45,7 @@ class MathProblemGenerator:
         elif level == 3:
             # 6-10的加法
             a = random.randint(0, 10)
-            b = random.randint(6-a, 10-a)
+            b = random.randint(0, 10-a)
             operation = random.choice(["+"])
             expression = f"{a} + {b} = "
             answer = a + b

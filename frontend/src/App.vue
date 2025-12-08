@@ -2,6 +2,8 @@
 import PageHeader from "@/components/PageHeader.vue";
 import MeunRight from "@/components/MeunRight.vue";
 import { useRoute, useRouter } from "vue-router";
+import bus from "@/utils/bus"; // 导入事件总线
+import { ref, onMounted, onUnmounted } from "vue";
 
 const router = useRouter();
 const route = useRoute();

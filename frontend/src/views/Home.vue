@@ -2,11 +2,14 @@
 import { MoreFilled } from "@element-plus/icons-vue";
 import { StarFilled } from "@element-plus/icons-vue";
 
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { off } from "node:process";
 import { useRouter } from "vue-router";
+import request from "../utils/request";
+import bus from "../utils/bus"; // 导入事件总线
 
 const router = useRouter();
+const userInfo = ref(null);
 
 // 接收路由路径参数，实现跳转
 const handleSelect = (path: string) => {
@@ -15,6 +18,24 @@ const handleSelect = (path: string) => {
 };
 const gutterSize = ref(2);
 const gridSize = ref(8);
+
+// 退出登录
+const logout = () => {
+  localStorage.removeItem("access_token");
+  userInfo.value = null;
+  bus.emit("delete-user-info");
+  router.push("/");
+};
+
+// 获取当前用户信息
+const fetchUserInfo = async () => {
+  try {
+    const res = await request.get("/api/v1/users/me/");
+    userInfo.value = res.data;
+  } catch (err) {
+    console.error("获取用户信息失败", err);
+  }
+};
 
 const activities = [
   {
@@ -46,6 +67,21 @@ const activities = [
     timestamp: "2018-04-03 20:46",
   },
 ];
+const delUserInfo = () => {
+  userInfo.value = null;
+};
+bus.on("delete-user-info", delUserInfo);
+onMounted(() => {
+  if (localStorage.getItem("access_token")) {
+    fetchUserInfo();
+  }
+});
+onUnmounted(() => {
+  bus.off("refresh-menu", fetchUserInfo);
+});
+onUnmounted(() => {
+  bus.off("delete-user-info", delUserInfo);
+});
 </script>
 
 <template>
@@ -85,7 +121,19 @@ const activities = [
       :lg="gridSize"
       :xl="gridSize"
     >
-      <div class="box"></div>
+      <div class="box">
+        <div>
+          <h2>登录</h2>
+          <div v-if="userInfo">
+            <p>当前登录用户：{{ userInfo.username }}</p>
+            <p>邮箱：{{ userInfo.email }}</p>
+            <el-button type="primary" @click="logout">退出登录</el-button>
+          </div>
+          <div v-else>
+            <p>未登录，请<router-link to="/user/login">登录</router-link></p>
+          </div>
+        </div>
+      </div>
     </el-col>
   </el-row>
   <el-row> </el-row>

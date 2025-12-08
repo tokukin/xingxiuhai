@@ -1,5 +1,5 @@
 <template>
-  <el-page-header icon="" title="当前页面">
+  <el-page-header icon="" title="当前路径：">
     <template #content>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item
