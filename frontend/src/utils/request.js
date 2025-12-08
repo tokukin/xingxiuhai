@@ -5,8 +5,7 @@ import router from "@/router"; // 导入路由实例，替代 window.location.hr
 import path from "path";
 
 const baseURL =
-  import.meta.env.VITE_API_BASE_URL.replace("/api", "") ||
-  "http://localhost:8001";
+  import.meta.env.VITE_API_BASE_URL_USER || "http://localhost:8001";
 const request = axios.create({
   baseURL,
   timeout: 5000,
