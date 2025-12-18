@@ -137,9 +137,35 @@ onUnmounted(() => {
     </el-col>
   </el-row>
   <el-row> </el-row>
+  <!-- 底部文字区域 -->
+  <footer class="page-footer">
+    <div class="footer-content">
+      © 2025 学习系统 - 保留所有权利 |
+      <a href="https://beian.miit.gov.cn/" target="_blank"
+        >陇ICP备2025024677号-1</a
+      >
+      <!-- | <a href="https://beian.miit.gov.cn/" target="_blank">公安备案</a> -->
+      | 联系方式：lidexin911@126.com
+    </div>
+  </footer>
 </template>
 
 <style>
+.page-footer {
+  position: fixed; /* 固定定位 */
+  bottom: 0; /* 距离底部0 */
+  left: 0;
+  right: 0;
+  height: 60px; /* 底部高度 */
+  background-color: #f8f9fa; /* 背景色 */
+  border-top: 1px solid #e9ecef; /* 顶部边框分隔 */
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  font-size: 14px;
+  color: #6c757d; /* 文字颜色 */
+  z-index: 999; /* 防止被其他内容覆盖 */
+}
 .box_home {
   height: 70vh;
   background-color: aliceblue;
