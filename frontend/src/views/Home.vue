@@ -143,8 +143,19 @@ onUnmounted(() => {
       © 2025 学习系统 - 保留所有权利 |
       <a href="https://beian.miit.gov.cn/" target="_blank"
         >陇ICP备2025024677号-1</a
+      >|
+      <img
+        style="width: 15px"
+        src="../assets/batb.png"
+        alt="甘公网安备62010202004813号"
+      />
+      <a
+        href="https://beian.mps.gov.cn/#/query/webSearch?code=62010202004813"
+        rel="noreferrer"
+        target="_blank"
+        >甘公网安备62010202004813号</a
       >
-      <!-- | <a href="https://beian.miit.gov.cn/" target="_blank">公安备案</a> -->
+
       | 联系方式：lidexin911@126.com
     </div>
   </footer>
@@ -166,6 +177,13 @@ onUnmounted(() => {
   color: #6c757d; /* 文字颜色 */
   z-index: 999; /* 防止被其他内容覆盖 */
 }
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* 垂直方向居中（主轴居中） */
+  align-items: center; /* 水平方向居中（交叉轴居中） */
+}
+
 .box_home {
   height: 70vh;
   background-color: aliceblue;
